@@ -1,0 +1,40 @@
+<div class="container my-5">
+  <% if notice.present? %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <div class="mb-4">
+    <h1 class="display-4">Detalhes do Usuário</h1>
+  </div>
+
+  <%= render @user %>
+
+  <h3 class="mb-3">Transações:</h3>
+  <% if @transactions.present? %>
+    <% @transactions.each do |transaction| %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <p class="card-text">
+            <strong>Tipo:</strong> <%= transaction.transaction_type %><br>
+            <strong>Valor:</strong> R$ <%=sprintf('%.2f', transaction.value) %><br>
+            <strong>Data:</strong> <%= data_br(transaction.created_at) %>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <p>Nenhuma transação encontrada.</p>
+  <% end %>
+
+  <div class="mb-3">
+    <%= link_to "Transferência", new_transaction_path(wallet_id: @user.wallet.id), class: "btn btn-primary mr-3" %>
+    <%= link_to "Editar este usuário", edit_user_path(@user), class: "btn btn-secondary mr-3" %>
+    <%= link_to "Voltar para usuários", users_path, class: "btn btn-secondary" %>
+  </div>
+
+  <div>
+    <%= button_to "Excluir este usuário", @user, method: :delete, data: { confirm: "Tem certeza?" }, class: "btn btn-danger" %>
+  </div>
+</div>

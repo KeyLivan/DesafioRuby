@@ -1,0 +1,33 @@
+<div class="container my-5">
+  <% if notice.present? %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <div>
+    <h1 class="display-4">Lista de Usuários</h1>
+  </div>
+
+  <div id="users" class="row">
+    <% @users.each do |user| %>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card border-primary shadow">
+          <div class="card-header bg-primary text-white">
+            <h5 class="card-title mb-0"></h5>
+          </div>
+          <div class="card-body">
+            <%= render user %>
+          </div>
+          <div class="card-footer text-center bg-light">
+            <%= link_to "Detalhes", user, class: "btn btn-outline-primary btn-sm" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= link_to "Novo Usuário", new_user_path, class: "btn btn-primary btn-lg" %>
+  </div>
+</div>

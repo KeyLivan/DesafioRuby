@@ -1,0 +1,29 @@
+<%= form_with(model: transaction) do |form| %>
+  <%= form.hidden_field :wallet_id, value: @wallet.id if @wallet %>
+
+  <% if transaction.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">Erro!</h4>
+      <p><%= pluralize(transaction.errors.count, "erro") %> impediram que esta transação fosse salva:</p>
+      <ul>
+        <% transaction.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3" style="max-width: 300px;">
+    <%= form.label :transaction_type, "Tipo de Transação" %>
+    <%= form.select :transaction_type, [['Debitar', 'DEBITADO'], ['Creditar', 'CREDITADO']], {}, class: "form-control" %>
+  </div>
+
+  <div class="mb-3" style="max-width: 300px;">
+    <%= form.label :value, "Valor" %>
+    <%= form.text_field :value, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit "Salvar", class: "btn btn-primary" %>
+  </div>
+<% end %>

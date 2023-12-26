@@ -1,0 +1,9 @@
+<div id="<%= dom_id user %>" class="card mb-3">
+  <div class="card-body">
+    <p class="card-text">
+      <strong>Nome:</strong> <%= user.nome %><br>
+      <strong>Sobrenome:</strong> <%= user.sobrenome %><br>
+      <strong>Saldo Atual:</strong> R$ <%= sprintf('%.2f', user.wallet.value) %>
+    </p>
+  </div>
+</div>

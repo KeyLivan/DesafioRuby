@@ -1,0 +1,18 @@
+<div class="container my-5">
+  <div class="mb-4">
+    <h1 class="display-4">Nova Transação</h1>
+  </div>
+
+  <div>
+    <%= unless @wallet.nil?
+      raw('Nome Completo: ' + @user.nome + ' ' + @user.sobrenome + '<br>' +
+      'Saldo Atual: R$ ' + sprintf('%.2f', @wallet.value))
+    end %>
+  </div>
+
+  <%= render "form", transaction: @transaction %>
+
+  <div class="mt-3">
+    <%= link_to "Voltar", user_path(@user), class: "btn btn-outline-secondary" %>
+  </div>
+</div>
